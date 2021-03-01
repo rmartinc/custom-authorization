@@ -1,6 +1,7 @@
 package org.jboss.sample.authorization;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
@@ -27,7 +28,10 @@ public class ProtectedServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.getWriter().write("This is a protected servlet \n");
+        response.getWriter().write("This is a protected servlet executed on ");
+        response.getWriter().write(InetAddress.getLocalHost().getHostName());
+        response.getWriter().write("\n");
+
 
         String webName = null;
         if (request.getUserPrincipal() != null) {
